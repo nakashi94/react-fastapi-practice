@@ -23,8 +23,15 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World!!!!"}
+    return {"hello": "Hello World!!!!"}
 
+@app.get("/users")
+def read_users():
+    return [
+        {"name": "Yamada", "age": 24, "sex": "m"},
+        {"name": "Suzuki", "age": 21, "sex": "f"},
+        {"name": "Tanaka", "age": 35, "sex": "m"},
+    ]
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: str = None):

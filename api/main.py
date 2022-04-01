@@ -28,9 +28,9 @@ def read_root():
 @app.get("/users")
 def read_users():
     return [
-        {"name": "Yamada", "age": 24, "sex": "m"},
-        {"name": "Suzuki", "age": 21, "sex": "f"},
-        {"name": "Tanaka", "age": 35, "sex": "m"},
+        {"id": 1, "name": "Yamada", "age": 24, "sex": "M"},
+        {"id": 2, "name": "Suzuki", "age": 21, "sex": "F"},
+        {"id": 3, "name": "Tanaka", "age": 35, "sex": "M"},
     ]
 
 @app.get("/items/{item_id}")

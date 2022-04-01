@@ -5,8 +5,12 @@ import { User } from "../types/User";
 
 export const useGetUsers = () => {
 
+    const api = axios.create({
+        baseURL: "http://127.0.0.1:8000"
+    })
+
     const getUsers = useCallback(() => {
-        axios.get<Array<User>>("http://127.0.0.1:8000/users")
+        api.get<Array<User>>("/users")
             .then(res => console.log(res.data))
             .catch((err) => {
                 alert("ユーザーが取得できませんでした。")

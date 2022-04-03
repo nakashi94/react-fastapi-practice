@@ -20,6 +20,12 @@ app.add_middleware(
     max_age=300,
 )
 
+users = [
+        {"id": 1, "name": "Yamada", "age": 24, "sex": "M"},
+        {"id": 2, "name": "Suzuki", "age": 21, "sex": "F"},
+        {"id": 3, "name": "Tanaka", "age": 35, "sex": "M"},
+    ]
+
 
 @app.get("/")
 def read_root():
@@ -27,12 +33,8 @@ def read_root():
 
 @app.get("/users")
 def read_users():
-    return [
-        {"id": 1, "name": "Yamada", "age": 24, "sex": "M"},
-        {"id": 2, "name": "Suzuki", "age": 21, "sex": "F"},
-        {"id": 3, "name": "Tanaka", "age": 35, "sex": "M"},
-    ]
+    return users
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/users/{user_id}")
+def read_item(user_id: str):
+    return users[int(user_id) - 1]

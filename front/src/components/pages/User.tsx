@@ -1,15 +1,21 @@
 import { memo, VFC } from "react";
 
-import { Button } from "../atoms/Button";
-import { useGetUsers } from "../../hooks/useGetUsers";
+import { PrimaryButton } from "../atoms/Button/PrimaryButton";
+import { useGetAllUsers } from "../../hooks/useGetAllUsers";
+import { useGetUser } from "../../hooks/useGetUser";
 import { UserCard } from "../organisms/UserCard";
-import { Wrap, WrapItem } from "@chakra-ui/react";
+import { HStack, Wrap, WrapItem } from "@chakra-ui/react";
+import { SearchBar } from "../molecules/SearchBar";
 
 export const User: VFC = memo(() => {
-    const { getUsers, users } = useGetUsers();
+    const { getAllUsers, users, usersLoading } = useGetAllUsers();
+    const { getUser, user, userLoading } = useGetUser();
     return (
         <>
-            <Button onClick={getUsers}>getUsers</Button>
+            <HStack spacing={12}>
+                <PrimaryButton color="white" bg="blue.400" loading={usersLoading} colorScheme="blue" onClick={getAllUsers}>getUsers</PrimaryButton>
+                <SearchBar onClick={getUser} user={user} loading={userLoading}/>
+            </HStack>
             <Wrap spacing="12px">
                 {users.map((user) => (
                     <WrapItem key={user.id}>

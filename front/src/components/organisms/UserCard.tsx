@@ -1,3 +1,4 @@
+import { Box, Center } from "@chakra-ui/react";
 import { memo, VFC } from "react";
 
 type Props = {
@@ -11,16 +12,24 @@ export const UserCard: VFC<Props> = memo((props) => {
     const { id, name, age, sex } = props;
     return (
         <>
-            <dl>
-                <dt>id</dt>
-                <dd>{id}</dd>
-                <dt>name</dt>
-                <dd>{name}</dd>
-                <dt>age</dt>
-                <dd>{age}</dd>
-                <dt>sex</dt>
-                <dd>{sex}</dd>
-            </dl>
+            <Box 
+                w="240px"
+                bg="white"
+                borderWidth="1px"
+                borderRadius="lg"
+                overflow="hidden"
+            >
+                <Center as="h3" fontSize="lg" fontWeight="semibold" m={4}>{name}</Center>
+                    <Center as="p">
+                        {`id : ${id}`}
+                    </Center>
+                    <Center as="p">
+                        {`age : ${age}`}
+                    </Center>
+                    <Center as="p" mb={4}>
+                        {`sex : ${sex}`}
+                    </Center>
+            </Box>
         </>
     )
 })
